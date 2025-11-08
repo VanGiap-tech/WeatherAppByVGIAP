@@ -3,9 +3,12 @@ import './Weather.css'
 
 import search_icon from '../assets/search.png'
 import clear_icon from '../assets/clear.png'
+import clearnight_icon from '../assets/clear-night.png'
 import cloud_icon from '../assets/cloud.png'
+import cloudnight_icon from '../assets/clear-night1.png'
 import drizzle_icon from '../assets/drizzle.png'
 import rain_icon from '../assets/rain.png'
+import rainnight_icon from '../assets/rain-night.png'
 import snow_icon from '../assets/snow.png'
 import wind_icon from '../assets/wind.png'
 import humidity_icon from '../assets/humidity.png'
@@ -15,27 +18,41 @@ const Weather = () => {
     
     const allIcons={
         "01d":clear_icon,
-        "01n":clear_icon,
+        "01n":cloudnight_icon,
         "02d":cloud_icon,
-        "02n":cloud_icon,
+        "02n":cloudnight_icon,
         "03d":cloud_icon,
-        "03n":cloud_icon,
+        "03n":cloudnight_icon,
         "04d":drizzle_icon,
-        "04n":drizzle_icon,
+        "04n":rainnight_icon,
         "09d":rain_icon,
-        "09n":rain_icon,
+        "09n":rainnight_icon,
         "10d":rain_icon,
-        "10n":rain_icon,
+        "10n":rainnight_icon,
         "13d":snow_icon,
         "13n":snow_icon,
     }
+const removeVietnameseMarks = (str) => {
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    // Loại bỏ dấu và ký tự đặc biệt khác nếu cần
+    str = str.replace(/\s+/g, ' ').trim(); // Xóa khoảng trắng thừa
+    
+    return str;
+};
     const search=async(city)=>{
         if(city===""){
             alert("Enter City name");
             return;
         }
         try{
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_APP_ID}`;
+            const cityWithoutMarks = removeVietnameseMarks(city);
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityWithoutMarks}&units=metric&appid=${import.meta.env.VITE_APP_ID}`;
             const respone = await fetch(url);
             const data =await respone.json();
             if(!respone.ok){
