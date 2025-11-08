@@ -9,15 +9,47 @@
   min-height: 100VH;
   display: grid;
   background:#e2d4ff ;
+  
+}
+.intro-app{
+  justify-content: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 .app h2{
-  position: relative;
-  margin-top: 20px;
+  
+
   text-align: center;
   color: palevioletred;
 }
-.app h2 img{
-  position: absolute;
-  width: 30px;
-  height: 30px;
+.intro-app img{
+
+ width: 60px;
+ height: 60px;
+ border-radius: 999px;
+ object-fit: cover;
+}
+/* 📱 Giao diện cho điện thoại */
+@media screen and (max-width: 600px) {
+  .app{
+  min-height: 80VH;
+  display: grid;
+  background:#e2d4ff ;
+  
+}
+  .intro-app {
+    height: 80px;
+    gap: 8px;
+  }
+
+  .app .intro-app h2 {
+    font-size: 22px; /* Giảm kích thước chữ */
+    text-align: center;
+  }
+
+  .app .intro-app img {
+    width: 40px; /* Ảnh nhỏ hơn một chút */
+    height: 40px;
+  }
 }
