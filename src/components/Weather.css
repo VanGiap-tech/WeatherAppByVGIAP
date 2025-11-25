@@ -1,120 +1,169 @@
-.weather{
+/* --- Thiết lập chung (Giữ nguyên cấu trúc) --- */
+.weather {
     place-self: center;
-    padding: 40px;
-    border-radius: 10px;
-    background-image: linear-gradient(45deg,#2f4680,#500ae4);
+    /* Giảm padding để thẻ gọn gàng hơn */
+    padding: 30px;
+    border-radius: 15px; /* Bo góc mềm mại hơn */
+    /* Màu nền: Gradient hiện đại, chuyển từ xanh lam sang tím than */
+    background-image: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Thêm bóng đổ tinh tế */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.search-bar{
+
+/* --- Thanh tìm kiếm --- */
+.search-bar {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px; /* Tăng khoảng cách một chút */
 }
-.search-bar input{
-    height: 50px;
+
+.search-bar input {
+    height: 55px; /* Tăng chiều cao */
     border: none;
     outline: none;
     border-radius: 40px;
     padding-left: 25px;
-    color: #626262;
-    background: #ebfffc;
+    /* Màu nền trong suốt hơn, viền trắng mờ */
+    background: rgba(255, 255, 255, 0.9);
+    color: #333333; /* Màu chữ đen đậm hơn */
     font-size: 18px;
+    flex-grow: 1; /* Để input chiếm hết không gian còn lại */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.search-bar img{
-    width: 50px;
+
+.search-bar input::placeholder {
+    color: #999999;
+}
+
+.search-bar img {
+    width: 55px; /* Kích thước icon lớn hơn */
+    height: 55px;
     padding: 15px;
     border-radius: 50%;
-    background: #ebfffc;
+    /* Màu nền: Trắng sáng, nổi bật hơn */
+    background: #ffffff;
     cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-.weather-icon{
-    width: 150px;
-    margin: 30px 0;
-}
-.temperature{
-    color: #fff;
-    font-size: 80px;
-    line-height: 1;
-}
-.location{
-    color: #fff;
-    font-size: 40px;
-    
-}
-.weather-data{
-    width: 100%;
-    margin-top: 30px;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-}
-.weather-data .col{
-    display: flex;
-    align-items: flex-start;
-    gap:12px;
-    font-size: 22px;
 
+.search-bar img:hover {
+    background-color: #e0f7fa; /* Hiệu ứng hover nhẹ */
+    transform: scale(1.05);
 }
-.weather-data .col span{
+
+/* --- Biểu tượng thời tiết, Nhiệt độ, Vị trí --- */
+.weather-icon {
+    width: 150px;
+    margin: 40px 0; /* Tăng khoảng cách trên/dưới */
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2)); /* Thêm bóng đổ cho icon */
+}
+
+.temperature {
+    color: #ffffff;
+    font-size: 90px; /* Tăng cỡ chữ nhiệt độ */
+    line-height: 1;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.location {
+    color: #ffffff;
+    font-size: 45px; /* Tăng cỡ chữ vị trí */
+    font-weight: 400;
+    margin-top: 5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Dữ liệu bổ sung (Độ ẩm & Tốc độ gió) --- */
+.weather-data {
+    width: 100%;
+    margin-top: 40px; /* Tăng khoảng cách */
+    color: #ffffff;
+    display: flex;
+    justify-content: space-around; /* Sắp xếp đều 2 cột */
+    padding: 0 10px;
+}
+
+.weather-data .col {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 15px; /* Khoảng cách giữa icon và chữ */
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.weather-data .col span {
     display: block;
     font-size: 16px;
+    font-weight: 300; /* Làm nhẹ chữ mô tả */
+    margin-top: 3px;
+}
 
+.weather-data .col img {
+    width: 30px; /* Tăng kích thước icon */
+    margin-top: 0; /* Loại bỏ margin-top cũ */
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
 }
-.weather-data .col img{
-    width: 26px;
-    margin-top: 10px;
-}
+
+/* --- Media Query (Responsive) --- */
 @media screen and (max-width: 450px) {
-  .weather {
-    width: 330px;
-    padding: 20px;
-    border-radius: 8px;
-  }
+    .weather {
+        width: 90%;
+        max-width: 380px;
+        padding: 25px;
+        border-radius: 10px;
+    }
 
-  .search-bar {
-    
-    gap: 10px;
-    width: 100%;
-  }
+    .search-bar {
+        gap: 10px;
+        width: 100%;
+    }
 
-  .search-bar input {
-    width: 100%;
-    height: 45px;
-    font-size: 16px;
-    padding-left: 15px;
-  }
+    .search-bar input {
+        width: 100%;
+        height: 45px;
+        font-size: 16px;
+        padding-left: 15px;
+    }
 
-  .search-bar img {
-    width: 45px;
-    padding: 10px;
-  }
+    .search-bar img {
+        width: 45px;
+        height: 45px;
+        padding: 10px;
+    }
 
-  .weather-icon {
-    width: 100px;
-    margin: 20px 0;
-  }
+    .weather-icon {
+        width: 100px;
+        margin: 30px 0;
+    }
 
-  .temperature {
-    font-size: 50px;
-  }
+    .temperature {
+        font-size: 65px;
+    }
 
-  .location {
-    font-size: 28px;
-  }
+    .location {
+        font-size: 32px;
+    }
 
-  .weather-data {
- 
-    align-items: center;
-    gap: 15px;
-  }
+    .weather-data {
+        margin-top: 30px;
+        justify-content: space-between;
+        padding: 0 5px;
+    }
 
-  .weather-data .col {
-    font-size: 18px;
-  }
+    .weather-data .col {
+        font-size: 20px;
+        gap: 10px;
+    }
 
-  .weather-data .col span {
-    font-size: 14px;
-  }
+    .weather-data .col span {
+        font-size: 14px;
+    }
+
+    .weather-data .col img {
+        width: 25px;
+    }
 }
